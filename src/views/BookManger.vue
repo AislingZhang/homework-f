@@ -85,7 +85,7 @@
         },
         data(){
             return {
-                url:"http://localhost:3000/books",//数据源的路径，前后端合并时秩序保留相对路径
+                url:"/books",//数据源的路径，前后端合并时秩序保留相对路径
                 maxId:2,
                 book:{album_name:'',price:'',singers:''},
                 dialogVisible:false,
