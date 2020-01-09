@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import BookManger from "../views/BookManger";
+import Mocha from "../views/mocha";
+import Httptest from "../views/httptest";
 
 Vue.use(VueRouter)
 
@@ -12,6 +14,16 @@ const routes = [
     path: '/',
     name: 'bookManager',
     component: BookManger
+  },
+  {
+    path: '/httptest',
+    name: 'httptest',
+    component: Httptest
+  },
+  {
+    path: '/mocha',
+    name: 'mocha',
+    component: Mocha
   },
   {
     path: '/home',
