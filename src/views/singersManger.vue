@@ -32,6 +32,11 @@
 
         <h1>歌手管理</h1>
 
+        <div class="search-box">
+            <el-input placeholder="请输入歌手名" v-model="searchContent" class="input-with-select">
+                <el-button slot="append" type="primary" icon="el-icon-search" @click="searchSingers"></el-button>
+            </el-input>
+        </div>
         <el-button type="text" @click="dialogFormVisible = true">添加歌手</el-button>
 
 
@@ -84,12 +89,12 @@
                 singer:{singer_id:'',singer_name:''},
                 dialogVisible:false,
                 dialogFormVisible:false,
+                searchContent: '',
                  singers:[]
             }
         },
         methods:{
             deleteSinger(singer1){
-
                 let singer=singer1.row;
                 fetch(this.url+"/"+singer._id,{method:"DELETE"})
                 .then(res=>res.json())
@@ -98,11 +103,17 @@
                     this.singers.splice(index,1)
                     })
             },
+            searchSingers() {
+
+               // let url = '/getSingersByName/?name=' + this.searchContent;
+                fetch('http://localhost:3000/singers/getSingersByName/?name='+this.searchContent).then(response => response.json()).then(response => {
+                    this.singers = response;
+                    this.showSingersResults = true;
+                })
+            },
 
             addSinger(){
-                // this.singer.id=++this.maxId
-                // let bk=_.cloneDeep(this.singer)
-                // this.singers.push(bk)
+
                 fetch(this.url,{
                     method:"POST",headers:{'Content-Type':'application/json'},
                     body:JSON.stringify(this.singer)
