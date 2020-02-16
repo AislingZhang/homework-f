@@ -62,7 +62,7 @@
         </div>
 
         <el-button type="text" @click="dialogFormVisible = true">添加专辑</el-button>
-
+        <el-button type="text" @click="initAlbums">初始化唱片数据</el-button>
 
         <el-table
                 :data="albums"
@@ -156,6 +156,39 @@
                     fetch(this.url+url1).then(response => response.json()).then(response => {
                     this.albums = response;
                     this.showSingersResults = true;
+                })
+            },
+            initAlbums() {
+                this.$confirm('确定要初始化专辑数据吗', '专辑数据初始化', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消'
+                }).then(() => {
+
+
+                    fetch(this.url+'/init', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }).then(response => response.json()).then(response => {
+
+                        if (response.code == 0) {
+                            this.albums = response.albums;
+                            this.$message({
+                                showClose: true,
+                                message: response.msg,
+                                type: 'success'
+                            });
+                        } else {
+                            this.$message({
+                                showClose: true,
+                                message: response.msg,
+                                type: 'error'
+                            });
+                        }
+                    })
+                }).catch(() => {
+                    console.log('init cancel');
                 })
             },
             handleClose(){

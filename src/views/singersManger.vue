@@ -50,7 +50,7 @@
             </el-input>
         </div>
         <el-button type="text" @click="dialogFormVisible = true">添加歌手</el-button>
-
+        <el-button type="text" @click="initSingers">初始化歌手数据</el-button>
 
             <el-table
                     :data="singers"
@@ -139,6 +139,39 @@
                 }).then(res=>res.json())
                 .then(nb=>this.singers.push(nb))
 
+            },
+            initSingers() {
+                this.$confirm('确定要初始化歌手数据吗', '歌手数据初始化', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消'
+                }).then(() => {
+
+                    fetch(this.url+'/init', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }).then(response => response.json()).then(response => {
+                     //   this.loadingSwitch(false);
+                        if (response.code == 0) {
+                            this.singers = response.singers;
+                            this.$message({
+                                showClose: true,
+                                message: response.msg,
+                                type: 'success'
+                            });
+                        } else {
+                            this.$message({
+                                showClose: true,
+                                message: response.msg,
+                                type: 'error'
+                            });
+                        }
+                    })
+                }).catch(() => {
+                //    this.loadingSwitch(false);
+                    console.log('init cancel');
+                })
             },
             handleClose(){
                 console.log(123);
