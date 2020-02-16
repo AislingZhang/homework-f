@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import BookManger from "../views/BookManger";
+
 import Mocha from "../views/mocha";
 import Httptest from "../views/httptest";
+import albumsManger from "../views/albumsManger";
+import singersManger from "../views/singersManger";
 
 Vue.use(VueRouter)
 
@@ -12,8 +14,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'bookManager',
-    component: BookManger
+    name: 'albumsManager',
+    component: albumsManger
+  },
+  {
+    path: '/singers',
+    name: 'singersManager',
+    component: singersManger
   },
   {
     path: '/httptest',
