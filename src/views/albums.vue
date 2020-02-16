@@ -1,7 +1,8 @@
 <template>
 
 
-    <div>
+    <div align="center"
+         valign="center">
         <div id="app">
             <div id="nav">
                 <router-link to="/albums">音乐专辑查询</router-link>|
@@ -23,9 +24,15 @@
         <h1>音乐专辑查询</h1>
 
         <div class="search-box">
-            <el-input placeholder="请输入完整唱片名" v-model="searchContent" class="input-with-select">
-                <el-button slot="append" type="primary" icon="el-icon-search" @click="searchAlbums"></el-button>
-            </el-input>
+
+            <el-form :inline="true" :model="album" class="demo-form-inline">
+                <el-form-item label="">
+                    <el-input placeholder="请输入完整唱片名" v-model="searchContent" class="input-with-select">
+                        <el-button slot="append" type="primary" icon="el-icon-search" @click="searchAlbums"></el-button>
+                    </el-input>
+                </el-form-item>
+
+            </el-form>
         </div>
 
         <el-table

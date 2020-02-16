@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div                     align="center"
+                             valign="center">
         <div id="app">
             <div id="nav">
                 <router-link to="/albumsManager">音乐专辑管理</router-link>|
@@ -45,16 +46,27 @@
         <h1>歌手管理</h1>
 
         <div class="search-box">
-            <el-input placeholder="请输入歌手名" v-model="searchContent" class="input-with-select">
-                <el-button slot="append" type="primary" icon="el-icon-search" @click="searchSingers"></el-button>
-            </el-input>
+
+
+            <el-form :inline="true" :model="singer" class="demo-form-inline">
+                <el-form-item label="">
+                    <el-input placeholder="请输入歌手名" v-model="searchContent" class="input-with-select">
+                        <el-button slot="append" type="primary" icon="el-icon-search" @click="searchSingers"></el-button>
+                    </el-input>
+                </el-form-item>
+
+            </el-form>
+
         </div>
         <el-button type="text" @click="dialogFormVisible = true">添加歌手</el-button>
         <el-button type="text" @click="initSingers">初始化歌手数据</el-button>
 
             <el-table
                     :data="singers"
-                    style="width: 80%">
+                    style="width: 50%"
+                    max-height="500"
+                    align="center"
+                    valign="center" >
 
                 <el-table-column
                         prop="singer_id"
