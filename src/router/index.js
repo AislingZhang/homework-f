@@ -8,6 +8,7 @@ import albumsManger from "../views/albumsManger";
 import singersManger from "../views/singersManger";
 import albums from "../views/albums";
 import singers from "../views/singers";
+import loginre from "../views/loginre";
 //import admin from  "../views/admin";
 
 
@@ -23,8 +24,8 @@ const routes = [
   },
   {
     path: '/',
-    name: 'albums',
-    component: albums
+    name: 'login',
+    component: loginre
   },
   {
     path: '/singers',
