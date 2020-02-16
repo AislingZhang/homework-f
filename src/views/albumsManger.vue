@@ -41,6 +41,12 @@
 
         <h1>音乐专辑管理</h1>
 
+        <div class="search-box">
+            <el-input placeholder="请输入完整唱片名" v-model="searchContent" class="input-with-select">
+                <el-button slot="append" type="primary" icon="el-icon-search" @click="searchAlbums"></el-button>
+            </el-input>
+        </div>
+
         <el-button type="text" @click="dialogFormVisible = true">添加专辑</el-button>
 
 
@@ -103,6 +109,7 @@
                 album:{album_id:'',album_name:'',price:'',public_time:'',week:''},
                 dialogVisible:false,
                 dialogFormVisible:false,
+                searchContent: '',
                 albums:[]
             }
         },
@@ -119,14 +126,23 @@
             },
 
             addAlbum(){
-
-
                 fetch(this.url,{
                     method:"POST",headers:{'Content-Type':'application/json'},
                     body:JSON.stringify(this.album)
                 }).then(res=>res.json())
                     .then(nb=>this.albums.push(nb))
-
+            },
+            searchAlbums() {
+                let url1 = '';
+                if (!this.searchContent) {
+                    url1 = '/';
+                } else {
+                    url1 = '/getAlbumsByName/?name=' + this.searchContent
+                }
+                    fetch(this.url+url1).then(response => response.json()).then(response => {
+                    this.albums = response;
+                    this.showSingersResults = true;
+                })
             },
             handleClose(){
                 console.log(123);

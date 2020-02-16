@@ -105,8 +105,15 @@
             },
             searchSingers() {
 
-               // let url = '/getSingersByName/?name=' + this.searchContent;
-                fetch('http://localhost:3000/singers/getSingersByName/?name='+this.searchContent).then(response => response.json()).then(response => {
+                let url1 = '';
+                if (!this.searchContent) {
+                    url1 = '/';
+
+                } else {
+                    url1 = '/getSingersByName/?name=' + this.searchContent
+                }
+            //   let url1 = '/getSingersByName/?name='+this.searchContent;
+                fetch(this.url+url1).then(response => response.json()).then(response => {
                     this.singers = response;
                     this.showSingersResults = true;
                 })
