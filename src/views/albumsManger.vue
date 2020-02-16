@@ -1,5 +1,19 @@
 <template>
+
+
     <div>
+        <div id="app">
+            <div id="nav">
+                <router-link to="/albumsManager">音乐专辑管理</router-link>|
+                <router-link to="/singersManager">歌手管理</router-link>
+                <!--      <router-link to="/about">爬虫程序</router-link> |-->
+                <!--      <router-link to="/about">存入程序</router-link> |-->
+                <!--      <router-link to="/mocha">mocha测试</router-link> |-->
+                <!--      <router-link to="/httptest">音乐专辑接口测试</router-link>-->
+
+            </div>
+            <router-view/>
+        </div>
         <el-dialog
                 title="提示"
                 :visible.sync="dialogVisible"

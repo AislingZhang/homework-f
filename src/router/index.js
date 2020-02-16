@@ -6,6 +6,10 @@ import Mocha from "../views/mocha";
 import Httptest from "../views/httptest";
 import albumsManger from "../views/albumsManger";
 import singersManger from "../views/singersManger";
+import albums from "../views/albums";
+import singers from "../views/singers";
+//import admin from  "../views/admin";
+
 
 Vue.use(VueRouter)
 
@@ -13,12 +17,32 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/albumsManager',
     name: 'albumsManager',
     component: albumsManger
   },
   {
+    path: '/',
+    name: 'albums',
+    component: albums
+  },
+  {
     path: '/singers',
+    name: 'singers',
+    component: singers
+  },
+  {
+    path: '/albums',
+    name: 'albums',
+    component: albums
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: albumsManger
+  },
+  {
+    path: '/singersManager',
     name: 'singersManager',
     component: singersManger
   },
